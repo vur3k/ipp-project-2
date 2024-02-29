@@ -1,0 +1,39 @@
+<?php
+
+namespace IPP\Student\Instruction;
+
+use IPP\Core\Interface\OutputWriter;
+use IPP\Core\ReturnCode;
+use IPP\Student\Variable;
+
+class DPrint extends Instruction {
+    static private OutputWriter $stderr;
+    public function __construct(\DOMElement $instruction, OutputWriter $stderr) {
+        parent::__construct($instruction, 1);
+        self::$stderr = $stderr;
+    }
+
+    public function execute(): void {
+        $arg = $this->getArg(1);
+        if ($arg instanceof Variable) {
+            $arg = $arg->getVarAsConst();
+        }
+        if ($arg->isConst()) {
+            switch($arg->getType()) {
+                case 'int':
+                    self::$stderr->writeInt($arg->getValue());
+                    break;
+                case 'bool':
+                    self::$stderr->writeBool($arg->getValue());
+                    break;
+                case 'string':
+                case 'nil':
+                    self::$stderr->writeString($arg->getValue());
+
+            }
+        }
+        else {
+            exit(ReturnCode::OPERAND_TYPE_ERROR);
+        }
+    }
+}
