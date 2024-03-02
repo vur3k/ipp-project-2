@@ -78,8 +78,8 @@ class Argument {
                 }
             }
             $char = mb_chr((int)($split[$i][0] . $split[$i][1] . $split[$i][2]), 'UTF-8');
-            if ($char === false) {
-                exit(ReturnCode::STRING_OPERATION_ERROR);
+            if (!$char) {
+                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
             }
             $out .= $char;
             $out .= substr($split[$i], 3);

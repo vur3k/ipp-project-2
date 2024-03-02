@@ -25,6 +25,5 @@ class DefVar extends Instruction {
         else {
             exit(ReturnCode::OPERAND_TYPE_ERROR);
         }
-
     }
 }
