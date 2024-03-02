@@ -25,15 +25,15 @@ class FrameStack {
         self::$TF = new Frame();
     }
 
-    static function getStackPointer(): int {
+    private static function getStackPointer(): int {
         return self::$stackPointer;
     }
 
-    static function incrementStackPointer(): void {
+    private static function incrementStackPointer(): void {
         self::$stackPointer++;
     }
 
-    static function decrementStackPointer(): void {
+    private static function decrementStackPointer(): void {
         self::$stackPointer--;
     }
     static function pushFrame(): void {

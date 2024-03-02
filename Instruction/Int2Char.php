@@ -14,6 +14,7 @@ class Int2Char extends Instruction {
     public function execute(): void {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
+
         if ($arg1 instanceof Variable) {
             if ($arg2 instanceof Variable) {
                 $arg2 = $arg2->getVarAsConst();

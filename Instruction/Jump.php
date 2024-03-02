@@ -12,6 +12,7 @@ class Jump extends Instruction {
 
     public function execute(): void {
         $label = $this->getArg(1);
+
         if (!$label->isLabel()){
             exit(ReturnCode::OPERAND_TYPE_ERROR);
         }

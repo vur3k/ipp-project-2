@@ -13,6 +13,7 @@ class DefVar extends Instruction {
 
     public function execute(): void {
         $arg = $this->getArg(1);
+
         if ($arg instanceof Variable) {
             $frame = FrameStack::getFrame($arg->getFrame());
             if (!$frame->isDefined($arg->getName())) {

@@ -72,10 +72,10 @@ class Instruction {
             else {
                 $type = $child->getAttribute('type');
                 if ($type === 'string') {
-                    $arg = new Argument(Argument::expandString($tag), $type);
+                    $arg = new Argument(Argument::expandString($tag), 'string');
                 }
                 else {
-                    $arg = new Argument($tag, $child->getAttribute('type'));
+                    $arg = new Argument($tag, $type);
                 }
             }
             switch ($child->nodeName) {

@@ -13,6 +13,7 @@ class Int2CharS extends Instruction {
 
     public function execute(): void {
         $arg = DataStack::popData();
+
         if ($arg->isInt()) {
             $char = mb_chr($arg->getValue(), 'UTF-8');
             if (!$char) {

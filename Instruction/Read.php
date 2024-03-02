@@ -31,11 +31,8 @@ class Read extends Instruction {
                         break;
                     case 'bool':
                         $val = self::$input->readBool();
-                        if ($val === true) {
-                            $arg1->setValue(new Argument('true', 'bool'));
-                        }
-                        elseif ($val === false) {
-                            $arg1->setValue(new Argument('false', 'bool'));
+                        if ($val !== null) {
+                            $arg1->setValue(new Argument($val ? 'true' : 'false', 'bool'));
                         }
                         else {
                             $arg1->setValue(new Argument('', 'nil'));
@@ -44,7 +41,7 @@ class Read extends Instruction {
                     case 'string':
                         $val = self::$input->readString();
                         if ($val !== null) {
-                            $arg1->setValue(new Argument(Argument::expandString($val), 'string'));
+                            $arg1->setValue(new Argument($val, 'string'));
                         }
                         else {
                             $arg1->setValue(new Argument('', 'nil'));

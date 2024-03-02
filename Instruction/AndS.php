@@ -14,6 +14,7 @@ class AndS extends Instruction {
     public function execute(): void {
         $arg2 = DataStack::popData();
         $arg1 = DataStack::popData();
+
         if ($arg1->isBool() && $arg2->isBool()) {
             DataStack::pushData(new Argument($arg1->getValue() && $arg2->getValue() ? 'true' : 'false', 'bool'));
         }

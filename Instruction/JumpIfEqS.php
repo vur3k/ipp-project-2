@@ -12,11 +12,15 @@ class JumpIfEqS extends Instruction {
     }
 
     public function execute(): void {
-        $label =$this->getArg(1);
+        $label = $this->getArg(1);
+
         if ($label->isLabel()) {
             $label = InstructionList::getLabelLine($label->getValue());
             $arg2 = DataStack::popData();
             $arg1 = DataStack::popData();
+            if (!$arg1->isConst() || !$arg2->isConst()) {
+                exit(ReturnCode::OPERAND_TYPE_ERROR);
+            }
             if ($arg1->getType() == $arg2->getType() || $arg1->isNil() || $arg2->isNil()) {
                 if ($arg1->getValue() === $arg2->getValue()) {
                     Factory::setInstructionPointer($label);

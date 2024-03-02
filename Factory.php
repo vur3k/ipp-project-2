@@ -191,7 +191,7 @@ class Factory {
         }
     }
 
-    static function incrementInstructionPointer(): void {
+    private static function incrementInstructionPointer(): void {
         self::$instructionPointer++;
     }
 
@@ -203,7 +203,7 @@ class Factory {
         return self::$instructionExecutedCount;
     }
 
-    static function incrementExecutedCount(): void {
+    private static function incrementExecutedCount(): void {
         self::$instructionExecutedCount++;
     }
 

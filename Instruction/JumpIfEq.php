@@ -15,6 +15,7 @@ class JumpIfEq extends Instruction {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
         $arg3 = $this->getArg(3);
+
         if ($arg1->isLabel()) {
             $label = InstructionList::getLabelLine($arg1->getValue());
             if ($arg2 instanceof Variable) {
@@ -22,6 +23,9 @@ class JumpIfEq extends Instruction {
             }
             if ($arg3 instanceof Variable) {
                 $arg3 = $arg3->getVarAsConst();
+            }
+            if (!$arg2->isConst() || !$arg3->isConst()) {
+                exit(ReturnCode::OPERAND_TYPE_ERROR);
             }
             if ($arg2->getType() == $arg3->getType() || $arg2->isNil() || $arg3->isNil()) {
                 if ($arg2->getValue() === $arg3->getValue()) {

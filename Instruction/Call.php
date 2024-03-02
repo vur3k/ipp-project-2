@@ -14,11 +14,12 @@ class Call extends Instruction {
 
     public function execute(): void {
         $val = $this->getArg(1);
+
         if (!$val->isLabel()) {
             exit(ReturnCode::OPERAND_TYPE_ERROR);
         }
-        $jumpAt = InstructionList::getLabelLine($val->getValue());
+        $label = InstructionList::getLabelLine($val->getValue());
         DataStack::pushData(new Argument($this->getOrder(), 'int'));
-        Factory::setInstructionPointer($jumpAt);
+        Factory::setInstructionPointer($label);
     }
 }

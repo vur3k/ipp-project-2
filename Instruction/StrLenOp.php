@@ -19,7 +19,7 @@ class StrLenOp extends Instruction {
             if ($arg2 instanceof Variable) {
                 $arg2 = $arg2->getVarAsConst();
             }
-            if($arg2->isString()) {
+            if ($arg2->isString()) {
                 $res = strlen($arg2->getValue());
                 $arg1->setValue(new Argument($res, 'int'));
             }

@@ -15,6 +15,7 @@ class DPrint extends Instruction {
 
     public function execute(): void {
         $arg = $this->getArg(1);
+
         if ($arg instanceof Variable) {
             $arg = $arg->getVarAsConst();
         }

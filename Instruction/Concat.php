@@ -15,6 +15,7 @@ class Concat extends Instruction {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
         $arg3 = $this->getArg(3);
+
         if ($arg1 instanceof Variable) {
             if ($arg2 instanceof Variable) {
                 $arg2 = $arg2->getVarAsConst();
