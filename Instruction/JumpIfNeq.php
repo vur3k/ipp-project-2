@@ -3,8 +3,8 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
+use IPP\Student\Argument\Variable;
 use IPP\Student\Factory;
-use IPP\Student\Variable;
 
 class JumpIfNeq extends Instruction {
     public function __construct(\DOMElement $instruction) {

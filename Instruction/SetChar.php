@@ -3,9 +3,9 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
-use IPP\Student\Argument;
+use IPP\Student\Argument\Argument;
+use IPP\Student\Argument\Variable;
 use IPP\Student\Frame\FrameStack;
-use IPP\Student\Variable;
 
 class SetChar extends Instruction {
     public function __construct(\DOMElement $instruction) {
@@ -18,7 +18,7 @@ class SetChar extends Instruction {
         $arg3 = $this->getArg(3);
 
         if ($arg1 instanceof Variable) {
-            $arg1 = FrameStack::findInScope($arg1->getName(), $arg1->getOriginFrame());
+            $arg1 = FrameStack::findInScope($arg1->getName(), $arg1->getFrame());
             if (!$arg1->isAssigned()) {
                 exit(ReturnCode::VALUE_ERROR);
             }

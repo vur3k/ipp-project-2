@@ -3,8 +3,8 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
+use IPP\Student\Argument\Variable;
 use IPP\Student\Frame\FrameStack;
-use IPP\Student\Variable;
 
 class DefVar extends Instruction {
     public function __construct(\DOMElement $instruction) {
@@ -14,7 +14,7 @@ class DefVar extends Instruction {
     public function execute(): void {
         $arg = $this->getArg(1);
         if ($arg instanceof Variable) {
-            $frame = FrameStack::getFrame($arg->getOriginFrame());
+            $frame = FrameStack::getFrame($arg->getFrame());
             if (!$frame->isDefined($arg->getName())) {
                 $frame->defVar($arg);
             }

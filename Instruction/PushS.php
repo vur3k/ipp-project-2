@@ -2,8 +2,8 @@
 
 namespace IPP\Student\Instruction;
 
+use IPP\Student\Argument\Variable;
 use IPP\Student\DataStack;
-use IPP\Student\Variable;
 
 class PushS extends Instruction {
     public function __construct(\DOMElement $instruction) {

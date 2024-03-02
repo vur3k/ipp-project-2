@@ -28,10 +28,12 @@ class BreakOp extends Instruction {
         }
         $GF = print_r(FrameStack::getFrame('GF'), true);
         self::$stderr->writeString("GF Contents:\n$GF\n");
-        $Stack = print_r(DataStack::getStack(), true);
-        self::$stderr->writeString("DATA STACK Contents:\n$Stack\n");
+        $top = print_r(DataStack::stackPeek(), true);
+        self::$stderr->writeString("On top of the DATA STACK: $top\n");
+        $cnt = DataStack::getStackPointer() + 1;
+        self::$stderr->writeString("$cnt items in the DATA STACK\n");
         $executed = Factory::getExecutedCount();
-        self::$stderr->writeString("Executed instruction count: $executed\n");
+        self::$stderr->writeString("$executed executed instructions\n");
         self::$stderr->writeString("#########################################################################\n");
     }
 }

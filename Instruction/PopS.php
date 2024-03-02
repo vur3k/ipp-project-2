@@ -3,8 +3,8 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
+use IPP\Student\Argument\Variable;
 use IPP\Student\DataStack;
-use IPP\Student\Variable;
 
 class PopS extends Instruction {
     public function __construct(\DOMElement $instruction) {

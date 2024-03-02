@@ -3,7 +3,7 @@
 namespace IPP\Student\Frame;
 
 use IPP\Core\ReturnCode;
-use IPP\Student\Variable;
+use IPP\Student\Argument\Variable;
 
 class Frame {
     /**

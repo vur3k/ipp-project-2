@@ -3,7 +3,7 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
-use IPP\Student\Argument;
+use IPP\Student\Argument\Argument;
 use IPP\Student\DataStack;
 
 class AndS extends Instruction {
@@ -15,7 +15,7 @@ class AndS extends Instruction {
         $arg2 = DataStack::popData();
         $arg1 = DataStack::popData();
         if ($arg1->isBool() && $arg2->isBool()) {
-            DataStack::pushData(new Argument($arg1->getValue() && $arg2->getValue(), 'bool'));
+            DataStack::pushData(new Argument($arg1->getValue() && $arg2->getValue() ? 'true' : 'false', 'bool'));
         }
         else {
             exit(ReturnCode::OPERAND_TYPE_ERROR);

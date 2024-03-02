@@ -4,7 +4,7 @@ namespace IPP\Student\Instruction;
 
 use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
-use IPP\Student\Variable;
+use IPP\Student\Argument\Variable;
 use IPP\Student\Frame\FrameStack;
 
 class Write extends Instruction {
@@ -18,7 +18,7 @@ class Write extends Instruction {
         $arg = $this->getArg(1);
         if ($arg instanceof Variable) {
 
-            $var = FrameStack::findInScope($arg->getName(), $arg->getOriginFrame());
+            $var = FrameStack::findInScope($arg->getName(), $arg->getFrame());
             if (!$var->isAssigned()) {
                 exit(ReturnCode::VALUE_ERROR);
             }

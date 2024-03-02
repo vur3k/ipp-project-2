@@ -1,13 +1,13 @@
 <?php
 
-namespace IPP\Student;
+namespace IPP\Student\Argument;
 use IPP\Core\ReturnCode;
 
 class Argument {
-    private string|bool|int $value;
+    private string|int $value;
     private string $type;
 
-    public function __construct(string|bool|int $value, string $type) {
+    public function __construct(string|int $value, string $type) {
         $this->type = $type;
         $this->value = $value;
     }
@@ -23,10 +23,9 @@ class Argument {
             case 'nil':
                 return '';
             case 'bool':
-                return $this->value === 'true' || $this->value === true;
+                return $this->value === 'true';
             default:
                 return $this->value;
-
         }
     }
 
@@ -79,6 +78,9 @@ class Argument {
                 }
             }
             $char = mb_chr((int)($split[$i][0] . $split[$i][1] . $split[$i][2]), 'UTF-8');
+            if ($char === false) {
+                exit(ReturnCode::STRING_OPERATION_ERROR);
+            }
             $out .= $char;
             $out .= substr($split[$i], 3);
         }

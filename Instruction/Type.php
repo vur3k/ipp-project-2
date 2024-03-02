@@ -3,9 +3,9 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
-use IPP\Student\Argument;
+use IPP\Student\Argument\Argument;
+use IPP\Student\Argument\Variable;
 use IPP\Student\Frame\FrameStack;
-use IPP\Student\Variable;
 
 class Type extends Instruction {
     public function __construct(\DOMElement $instruction) {
@@ -18,7 +18,7 @@ class Type extends Instruction {
 
         if ($arg1 instanceof Variable) {
             if ($arg2 instanceof Variable) {
-                $arg2 = FrameStack::findInScope($arg2->getName(), $arg2->getOriginFrame());
+                $arg2 = FrameStack::findInScope($arg2->getName(), $arg2->getFrame());
                 if ($arg2->isAssigned()) {
                     $arg1->setValue(new Argument($arg2->getVarType(), 'string'));
                 }

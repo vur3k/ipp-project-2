@@ -3,7 +3,7 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
-use IPP\Student\Argument;
+use IPP\Student\Argument\Argument;
 use IPP\Student\DataStack;
 
 class LtS extends Instruction {
@@ -16,7 +16,7 @@ class LtS extends Instruction {
         $arg1 = DataStack::popData();
 
         if ($arg1->getType() === $arg2->getType() && $arg1->isNonNilConst()) {
-            DataStack::pushData(new Argument($arg1->getValue() < $arg2->getValue(), 'bool'));
+            DataStack::pushData(new Argument($arg1->getValue() < $arg2->getValue() ? 'true' : 'false', 'bool'));
         }
         else {
             exit(ReturnCode::OPERAND_TYPE_ERROR);

@@ -3,8 +3,8 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
-use IPP\Student\Argument;
-use IPP\Student\Variable;
+use IPP\Student\Argument\Argument;
+use IPP\Student\Argument\Variable;
 
 class AndOp extends Instruction {
     public function __construct(\DOMElement $instruction) {
@@ -24,7 +24,7 @@ class AndOp extends Instruction {
                 $arg3 = $arg3->getVarAsConst();
             }
             if ($arg2->isBool() && $arg3->isBool()) {
-                $arg1->setValue(new Argument($arg2->getValue() && $arg3->getValue(), 'bool'));
+                $arg1->setValue(new Argument($arg2->getValue() && $arg3->getValue() ? 'true' : 'false', 'bool'));
             }
             else {
                 exit(ReturnCode::OPERAND_TYPE_ERROR);

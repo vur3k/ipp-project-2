@@ -4,8 +4,8 @@ namespace IPP\Student\Instruction;
 
 use IPP\Core\Interface\InputReader;
 use IPP\Core\ReturnCode;
-use IPP\Student\Argument;
-use IPP\Student\Variable;
+use IPP\Student\Argument\Argument;
+use IPP\Student\Argument\Variable;
 
 class Read extends Instruction {
     static private InputReader $input;
@@ -32,10 +32,10 @@ class Read extends Instruction {
                     case 'bool':
                         $val = self::$input->readBool();
                         if ($val === true) {
-                            $arg1->setValue(new Argument(true, 'bool'));
+                            $arg1->setValue(new Argument('true', 'bool'));
                         }
                         elseif ($val === false) {
-                            $arg1->setValue(new Argument(false, 'bool'));
+                            $arg1->setValue(new Argument('false', 'bool'));
                         }
                         else {
                             $arg1->setValue(new Argument('', 'nil'));

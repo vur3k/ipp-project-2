@@ -107,7 +107,7 @@ class Factory {
                     $tmp = new Instruction\Concat($instruction);
                     break;
                 case "STRLEN":
-                    $tmp = new Instruction\StrLen($instruction);
+                    $tmp = new Instruction\StrLenOp($instruction);
                     break;
                 case "GETCHAR":
                     $tmp = new Instruction\GetChar($instruction);

@@ -4,7 +4,7 @@ namespace IPP\Student\Instruction;
 
 use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
-use IPP\Student\Variable;
+use IPP\Student\Argument\Variable;
 
 class DPrint extends Instruction {
     static private OutputWriter $stderr;

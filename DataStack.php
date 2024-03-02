@@ -3,6 +3,7 @@
 namespace IPP\Student;
 
 use IPP\Core\ReturnCode;
+use IPP\Student\Argument\Argument;
 
 class DataStack {
     /**
@@ -36,11 +37,11 @@ class DataStack {
         }
     }
 
-    /**
-     * @return Argument[]
-     */
-    static function getStack(): array {
-        return DataStack::$stack;
+    static function stackPeek(): Argument | null{
+        if (self::isEmpty()) {
+            return null;
+        }
+        return self::$stack[self::getStackPointer()];
     }
 
     static function getStackPointer(): int {

@@ -3,7 +3,7 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
-use IPP\Student\Argument;
+use IPP\Student\Argument\Argument;
 use IPP\Student\DataStack;
 
 class MulS extends Instruction {
