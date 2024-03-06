@@ -94,38 +94,4 @@ class Argument {
         }
         return $out;
     }
-
-    static function expandFloat(string $str): float {
-        $prefix = substr($str, 0,2);
-        $sgn = 1;
-        if ($prefix !== '0x') {
-            $prefix = substr($str, 0,3);
-            if ($prefix !== '-0x') {
-                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
-            }
-            $val = substr($str, 3);
-            $sgn = -1;
-        }
-        else {
-            $val = substr($str, 2);
-        }
-        $split = explode('p', $val);
-        if (count($split) !== 2) {
-            exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
-        }
-        $flVal = (float)$split[0] * $sgn;
-        $exponent = (int)$split[1];
-
-        while ($exponent) {
-            if ($exponent > 0) {
-                $flVal *= 2;
-                $exponent--;
-            }
-            else {
-                $flVal *= .5;
-                $exponent++;
-            }
-        }
-        return $flVal;
-    }
 }
