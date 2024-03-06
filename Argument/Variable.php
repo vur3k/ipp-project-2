@@ -6,8 +6,8 @@ use IPP\Core\ReturnCode;
 use IPP\Student\Frame\FrameStack;
 
 class Variable extends Argument {
-    private string|int|null $data;
-    private string|null $dataType;
+    private string|int|float|null $data;
+    private ?string $dataType;
     private string $frame;
     public function __construct(string $name) {
         $split = explode('@', $name, 2);
@@ -39,7 +39,7 @@ class Variable extends Argument {
         }
     }
 
-    public function getVarType(): string|null {
+    public function getVarType(): ?string {
         return $this->dataType;
     }
 
@@ -47,11 +47,12 @@ class Variable extends Argument {
         return $this->getVarType() !== null;
     }
 
-    public function getValue(): string|int|bool {
+    public function getValue(): string|int|bool|float {
         switch($this->getVarType()) {
             case 'int':
             case 'string':
             case 'nil':
+            case 'float':
                 return $this->data;
             case 'bool':
                 return $this->data === 'true';
@@ -74,6 +75,14 @@ class Variable extends Argument {
 
     public function isNil(): bool {
         return $this->getVarType() === 'nil';
+    }
+
+    public function isFloat(): bool {
+        return $this->getVarType() === 'float';
+    }
+
+    public function isNum(): bool {
+        return $this->isInt() || $this->isFloat();
     }
 
     public function isNonNilConst(): bool {

@@ -12,7 +12,7 @@ class FrameStack {
      */
     private static array $LF;
     private static int $stackPointer;
-    private static Frame|null $TF;
+    private static ?Frame $TF;
 
     static function init(): void {
         self::$GF = new Frame();

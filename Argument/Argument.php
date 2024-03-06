@@ -4,10 +4,10 @@ namespace IPP\Student\Argument;
 use IPP\Core\ReturnCode;
 
 class Argument {
-    private string|int $value;
+    private string|int|float $value;
     private string $type;
 
-    public function __construct(string|int $value, string $type) {
+    public function __construct(string|int|float $value, string $type) {
         $this->type = $type;
         $this->value = $value;
     }
@@ -16,7 +16,7 @@ class Argument {
         return $this->type;
     }
 
-    public function getValue(): string|bool|int {
+    public function getValue(): string|bool|int|float {
         switch ($this->getType()) {
             case 'int':
                 return (int)$this->value;
@@ -57,12 +57,20 @@ class Argument {
         return $this->type === 'nil';
     }
 
+    public function isFloat(): bool {
+        return $this->type === 'float';
+    }
+
+    public function isNum(): bool {
+        return $this->isInt() || $this->isFloat();
+    }
+
     public function isConst(): bool {
         return $this->isNonNilConst() || $this->isNil();
     }
 
     public function isNonNilConst(): bool {
-        return $this->isInt() || $this->isString() || $this->isBool();
+        return $this->isInt() || $this->isString() || $this->isBool() || $this->isFloat();
     }
 
     static function expandString(string $str): string {
@@ -85,5 +93,39 @@ class Argument {
             $out .= substr($split[$i], 3);
         }
         return $out;
+    }
+
+    static function expandFloat(string $str): float {
+        $prefix = substr($str, 0,2);
+        $sgn = 1;
+        if ($prefix !== '0x') {
+            $prefix = substr($str, 0,3);
+            if ($prefix !== '-0x') {
+                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+            }
+            $val = substr($str, 3);
+            $sgn = -1;
+        }
+        else {
+            $val = substr($str, 2);
+        }
+        $split = explode('p', $val);
+        if (count($split) !== 2) {
+            exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+        }
+        $flVal = (float)$split[0] * $sgn;
+        $exponent = (int)$split[1];
+
+        while ($exponent) {
+            if ($exponent > 0) {
+                $flVal *= 2;
+                $exponent--;
+            }
+            else {
+                $flVal *= .5;
+                $exponent++;
+            }
+        }
+        return $flVal;
     }
 }

@@ -74,6 +74,9 @@ class Instruction {
                 if ($type === 'string') {
                     $arg = new Argument(Argument::expandString($tag), 'string');
                 }
+                elseif ($type === 'float') {
+                    $arg = new Argument(Argument::expandFloat($tag), 'float');
+                }
                 else {
                     $arg = new Argument($tag, $type);
                 }

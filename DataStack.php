@@ -37,7 +37,7 @@ class DataStack {
         }
     }
 
-    static function stackPeek(): Argument | null {
+    static function stackPeek(): ?Argument {
         if (self::isEmpty()) {
             return null;
         }

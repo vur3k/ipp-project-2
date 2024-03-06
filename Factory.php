@@ -4,7 +4,6 @@ namespace IPP\Student;
 use IPP\Core\Interface\InputReader;
 use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
-use IPP\Student\Instruction as Instruction;
 
 class Factory {
     private static int $instructionPointer;
@@ -183,6 +182,15 @@ class Factory {
                     break;
                 case "SUBS":
                     $tmp = new Instruction\SubS($instruction);
+                    break;
+                case "DIV":
+                    $tmp = new Instruction\DivOp($instruction);
+                    break;
+                case "FLOAT2INT":
+                    $tmp = new Instruction\Float2Int($instruction);
+                    break;
+                case "INT2FLOAT":
+                    $tmp = new Instruction\Int2Float($instruction);
                     break;
                 default:
                     exit(ReturnCode::INVALID_SOURCE_STRUCTURE);

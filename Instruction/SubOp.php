@@ -23,8 +23,8 @@ class SubOp extends Instruction {
             if ($arg3 instanceof Variable) {
                 $arg3 = $arg3->getVarAsConst();
             }
-            if ($arg2->isInt() && $arg3->isInt()) {
-                $arg1->setValue(new Argument($arg2->getValue() - $arg3->getValue(), 'int'));
+            if ($arg2->isNum() && $arg3->isNum()) {
+                $arg1->setValue(new Argument($arg2->getValue() - $arg3->getValue(), $arg2->isInt() && $arg3->isInt() ? 'int' : 'float'));
             }
             else {
                 exit(ReturnCode::OPERAND_TYPE_ERROR);
