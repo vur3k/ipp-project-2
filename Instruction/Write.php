@@ -25,8 +25,8 @@ class Write extends Instruction {
             $arg = $arg->getVarAsConst();
         }
         if ($arg->isConst()) {
-            if ($arg->isNil()) {
-                self::$stdout->writeString('');
+            if ($arg->isString() || $arg->isNil()) {
+                self::$stdout->writeString($arg->getValue());
             }
             elseif ($arg->isInt()) {
                 self::$stdout->writeInt($arg->getValue());
@@ -34,8 +34,8 @@ class Write extends Instruction {
             elseif ($arg->isBool()) {
                 self::$stdout->writeBool($arg->getValue());
             }
-            else {
-                self::$stdout->writeString($arg->getValue());
+            elseif ($arg->isFloat()) {
+                self::$stdout->writeFloat($arg->getValue());
             }
         }
         else {

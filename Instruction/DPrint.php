@@ -30,7 +30,10 @@ class DPrint extends Instruction {
                 case 'string':
                 case 'nil':
                     self::$stderr->writeString($arg->getValue());
-
+                    break;
+                case 'float':
+                    self::$stderr->writeFloat($arg->getValue());
+                    break;
             }
         }
         else {

@@ -47,6 +47,15 @@ class Read extends Instruction {
                             $arg1->setValue(new Argument('', 'nil'));
                         }
                         break;
+                    case 'float':
+                        $val = self::$input->readFloat();
+                        if ($val !== null) {
+                            $arg1->setValue(new Argument($val, 'float'));
+                        }
+                        else {
+                            $arg1->setValue(new Argument('', 'nil'));
+                        }
+                        break;
                 }
             }
             else {
