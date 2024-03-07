@@ -24,6 +24,8 @@ class Argument {
                 return '';
             case 'bool':
                 return $this->value === 'true';
+            case 'float':
+                return (float)$this->value;
             default:
                 return $this->value;
         }
