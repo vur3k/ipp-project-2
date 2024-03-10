@@ -32,35 +32,31 @@ class Argument {
     }
 
     public function isLabel(): bool {
-        return $this->type === 'label';
+        return $this->getType() === 'label';
     }
 
     public function isType(): bool {
-        return $this->type === 'type';
-    }
-
-    public function isVar(): bool {
-        return $this->type === 'var';
+        return $this->getType() === 'type';
     }
 
     public function isInt(): bool {
-        return $this->type === 'int';
+        return $this->getType() === 'int';
     }
 
     public function isBool(): bool {
-        return $this->type === 'bool';
+        return $this->getType() === 'bool';
     }
 
     public function isString(): bool {
-        return $this->type === 'string';
+        return $this->getType() === 'string';
     }
 
     public function isNil(): bool {
-        return $this->type === 'nil';
+        return $this->getType() === 'nil';
     }
 
     public function isFloat(): bool {
-        return $this->type === 'float';
+        return $this->getType() === 'float';
     }
 
     public function isNum(): bool {

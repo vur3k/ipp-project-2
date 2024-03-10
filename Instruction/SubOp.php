@@ -24,7 +24,7 @@ class SubOp extends Instruction {
                 $arg3 = $arg3->getVarAsConst();
             }
             if ($arg2->isNum() && $arg3->isNum()  && $arg2->getType() === $arg3->getType()) {
-                $arg1->setValue(new Argument($arg2->getValue() - $arg3->getValue(), $arg2->isInt() ? 'int' : 'float'));
+                $arg1->setValue(new Argument($arg2->getValue() - $arg3->getValue(), $arg2->getType()));
             }
             else {
                 exit(ReturnCode::OPERAND_TYPE_ERROR);

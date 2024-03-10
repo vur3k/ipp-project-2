@@ -48,16 +48,16 @@ class Variable extends Argument {
     }
 
     public function getValue(): string|int|bool|float {
-        switch($this->getVarType()) {
-            case 'int':
-            case 'string':
-            case 'nil':
-            case 'float':
-                return $this->data;
-            case 'bool':
+        if ($this->isAssigned()) {
+            if ($this->isBool()) {
                 return $this->data === 'true';
-            default:
-                exit(ReturnCode::VALUE_ERROR);
+            }
+            else {
+                return $this->data;
+            }
+        }
+        else {
+            exit(ReturnCode::VALUE_ERROR);
         }
     }
 
