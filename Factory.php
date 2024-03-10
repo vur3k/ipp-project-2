@@ -6,8 +6,8 @@ use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
 
 class Factory {
-    private static int $instructionPointer;
-    private static int $instructionExecutedCount = 0;
+    static private int $instructionPointer;
+    static private int $instructionExecutedCount = 0;
 
     static public function parseInstructions(\DOMElement $program, InputReader $stdin, OutputWriter $stdout, OutputWriter $stderr): void {
         $element = $program->firstElementChild;
@@ -199,27 +199,27 @@ class Factory {
         }
     }
 
-    private static function incrementInstructionPointer(): void {
+    static private function incrementInstructionPointer(): void {
         self::$instructionPointer++;
     }
 
-    static function setInstructionPointer(int $line): void {
+    static public function setInstructionPointer(int $line): void {
         self::$instructionPointer = $line;
     }
 
-    static function getExecutedCount(): int {
+    static public function getExecutedCount(): int {
         return self::$instructionExecutedCount;
     }
 
-    private static function incrementExecutedCount(): void {
+    static private function incrementExecutedCount(): void {
         self::$instructionExecutedCount++;
     }
 
-    static function getInstructionPointer(): int {
+    static public function getInstructionPointer(): int {
         return self::$instructionPointer;
     }
 
-    static function executeInstructions(): void {
+    static public function executeInstructions(): void {
         $instructions = Instruction\InstructionList::getInstructionList();
         if (empty($instructions)) {
             return;

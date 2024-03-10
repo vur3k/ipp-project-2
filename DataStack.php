@@ -9,15 +9,15 @@ class DataStack {
     /**
      * @var Argument[]
      */
-    private static array $stack;
-    private static int $stackPointer = -1;
+    static private array $stack;
+    static private int $stackPointer = -1;
 
-    static function pushData(Argument $data): void {
+    static public function pushData(Argument $data): void {
         self::incrementStackPointer();
         self::$stack[self::getStackPointer()] = $data;
     }
 
-    static function popData(): Argument {
+    static public function popData(): Argument {
         if (self::isEmpty()) {
             exit(ReturnCode::VALUE_ERROR);
         }
@@ -27,32 +27,32 @@ class DataStack {
         return($top);
     }
 
-    static function isEmpty(): bool {
+    static public function isEmpty(): bool {
         return self::getStackPointer() === -1;
     }
 
-    static function clearData(): void {
+    static public function clearData(): void {
         while (!self::isEmpty()) {
             self::popData();
         }
     }
 
-    static function stackPeek(): ?Argument {
+    static public function stackPeek(): ?Argument {
         if (self::isEmpty()) {
             return null;
         }
         return self::$stack[self::getStackPointer()];
     }
 
-    static function getStackPointer(): int {
+    static public function getStackPointer(): int {
         return self::$stackPointer;
     }
 
-    private static function incrementStackPointer(): void {
+    static private function incrementStackPointer(): void {
         self::$stackPointer++;
     }
 
-    private static function decrementStackPointer(): void {
+    static private function decrementStackPointer(): void {
         self::$stackPointer--;
     }
 }

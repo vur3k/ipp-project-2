@@ -6,13 +6,13 @@ use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
 
 class FrameStack {
-    private static Frame $GF;
+    static private Frame $GF;
     /**
      * @var Frame[]
      */
-    private static array $LF;
-    private static int $stackPointer;
-    private static ?Frame $TF;
+    static private array $LF;
+    static private int $stackPointer;
+    static private ?Frame $TF;
 
     static function init(): void {
         self::$GF = new Frame();
@@ -21,22 +21,22 @@ class FrameStack {
         self::$stackPointer = -1;
     }
 
-    static function createFrame(): void {
+    static public function createFrame(): void {
         self::$TF = new Frame();
     }
 
-    private static function getStackPointer(): int {
+    static private function getStackPointer(): int {
         return self::$stackPointer;
     }
 
-    private static function incrementStackPointer(): void {
+    static private function incrementStackPointer(): void {
         self::$stackPointer++;
     }
 
-    private static function decrementStackPointer(): void {
+    static private function decrementStackPointer(): void {
         self::$stackPointer--;
     }
-    static function pushFrame(): void {
+    static public function pushFrame(): void {
         if (!self::isTFInitialized()) {
             exit(ReturnCode::FRAME_ACCESS_ERROR);
         }
@@ -45,7 +45,7 @@ class FrameStack {
         self::$TF = null;
     }
 
-    static function popFrame(): void {
+    static public function popFrame(): void {
         if (self::isLFEmpty()) {
             exit(ReturnCode::FRAME_ACCESS_ERROR);
         }
@@ -54,7 +54,7 @@ class FrameStack {
         self::decrementStackPointer();
     }
 
-    static function findInScope(string $name, string $frame): Variable {
+    static public function findInScope(string $name, string $frame): Variable {
         $var = null;
         switch($frame) {
             case 'GF':
@@ -84,15 +84,15 @@ class FrameStack {
         return $var;
     }
 
-    static function isTFInitialized(): bool {
+    static public function isTFInitialized(): bool {
         return self::$TF !== null;
     }
 
-    static function isLFEmpty(): bool {
+    static public function isLFEmpty(): bool {
         return self::getStackPointer() === -1;
     }
 
-    static function getFrame(string $frameName): Frame {
+    static public function getFrame(string $frameName): Frame {
         switch($frameName) {
             case 'GF':
                 return self::$GF;

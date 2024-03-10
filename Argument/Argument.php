@@ -75,7 +75,7 @@ class Argument {
         return $this->isInt() || $this->isString() || $this->isBool() || $this->isFloat();
     }
 
-    static function expandString(string $str): string {
+    static public function expandString(string $str): string {
         $split = explode('\\', $str);
         $out = $split[0];
         for ($i = 1; $i < count($split); $i++) {

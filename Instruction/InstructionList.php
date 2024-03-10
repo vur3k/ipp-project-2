@@ -8,13 +8,13 @@ class InstructionList {
     /**
      * @var Instruction[]
      */
-    private static array $instructionList = [];
+    static private array $instructionList = [];
     /**
      * @var int[]
      */
-    private static array $labelList = [];
+    static private array $labelList = [];
 
-    public static function insertInstructionToList(Instruction $instruction): void {
+    static public function insertInstructionToList(Instruction $instruction): void {
         if (isset(self::$instructionList[$instruction->getOrder()])) {
             exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
         }
@@ -24,7 +24,7 @@ class InstructionList {
         self::$instructionList[$instruction->getOrder()] = $instruction;
     }
 
-    private static function insertLabelToList(Instruction $instruction): void {
+    static private function insertLabelToList(Instruction $instruction): void {
         if ($instruction->getArgCnt() !== 1) {
             exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
         }
@@ -41,11 +41,11 @@ class InstructionList {
     /**
      * @return Instruction[]
      */
-    public static function getInstructionList(): array {
+    static public function getInstructionList(): array {
         return self::$instructionList;
     }
 
-    public static function getLabelLine(string $label): int {
+    static public function getLabelLine(string $label): int {
         if (isset(self::$labelList[$label])) {
             return self::$labelList[$label];
         }
