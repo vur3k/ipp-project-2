@@ -49,12 +49,7 @@ class Variable extends Argument {
 
     public function getValue(): string|int|bool|float {
         if ($this->isAssigned()) {
-            if ($this->isBool()) {
-                return $this->data === 'true';
-            }
-            else {
-                return $this->data;
-            }
+            return $this->isBool() ? $this->data === 'true' : $this->data;
         }
         else {
             exit(ReturnCode::VALUE_ERROR);

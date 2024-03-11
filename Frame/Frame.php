@@ -6,24 +6,12 @@ use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
 
 class Frame {
-    /**
-     * @var Variable[]
-     */
-    private array $variables;
-    public function __construct() {
-        $this->variables = array();
-    }
+    /** @var Variable[] */
+    private array $variables = [];
 
     public function defVar(Variable $var): void {
         if ($this->isDefined($var->getName())){
             exit(ReturnCode::SEMANTIC_ERROR);
-        }
-        $this->variables[$var->getName()] = $var;
-    }
-
-    public function updateVar(Variable $var): void {
-        if (!$this->isDefined($var->getName())) {
-            exit(ReturnCode::FRAME_ACCESS_ERROR);
         }
         $this->variables[$var->getName()] = $var;
     }

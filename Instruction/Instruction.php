@@ -8,9 +8,7 @@ use IPP\Student\Argument\Variable;
 class Instruction {
     private int $order;
     private int $argCnt;
-    /**
-     * @var Argument[]
-     */
+    /** @var Argument[] */
     private array $args;
 
     protected function __construct(\DOMElement $instruction, int $argCnt) {

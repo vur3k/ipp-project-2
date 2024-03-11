@@ -11,7 +11,7 @@ class Factory {
 
     static public function parseInstructions(\DOMElement $program, InputReader $stdin, OutputWriter $stdout, OutputWriter $stderr): void {
         $element = $program->firstElementChild;
-        $instructions = array();
+        $instructions = [];
 
         for ($i = 0; $i < $program->childElementCount; $i++) {
             if ($element->localName !== 'instruction') {

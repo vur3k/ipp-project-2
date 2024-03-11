@@ -6,9 +6,7 @@ use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 
 class DataStack {
-    /**
-     * @var Argument[]
-     */
+    /** @var Argument[] */
     static private array $stack;
     static private int $stackPointer = -1;
 

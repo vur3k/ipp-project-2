@@ -7,9 +7,7 @@ use IPP\Student\Argument\Variable;
 
 class FrameStack {
     static private Frame $GF;
-    /**
-     * @var Frame[]
-     */
+    /** @var Frame[] */
     static private array $LF;
     static private int $stackPointer;
     static private ?Frame $TF;
@@ -17,7 +15,7 @@ class FrameStack {
     static function init(): void {
         self::$GF = new Frame();
         self::$TF = null;
-        self::$LF = array();
+        self::$LF = [];
         self::$stackPointer = -1;
     }
 

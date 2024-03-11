@@ -5,13 +5,9 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 
 class InstructionList {
-    /**
-     * @var Instruction[]
-     */
+    /** @var Instruction[] */
     static private array $instructionList = [];
-    /**
-     * @var int[]
-     */
+    /** @var int[] */
     static private array $labelList = [];
 
     static public function insertInstructionToList(Instruction $instruction): void {
@@ -38,9 +34,7 @@ class InstructionList {
         self::$labelList[$label->getValue()] = $instruction->getOrder();
     }
 
-    /**
-     * @return Instruction[]
-     */
+    /** @return Instruction[] */
     static public function getInstructionList(): array {
         return self::$instructionList;
     }
