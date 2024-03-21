@@ -5,13 +5,15 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
+use IPP\Student\Exception\ValueErrorException;
 
 class Float2Int extends Instruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 2);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
 
@@ -23,11 +25,12 @@ class Float2Int extends Instruction {
                 $arg1->setValue(new Argument((int)$arg2->getValue(), 'int'));
             }
             else {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

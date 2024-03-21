@@ -4,6 +4,7 @@ namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Factory;
 
 class JumpIfNeq extends Instruction {
@@ -11,7 +12,7 @@ class JumpIfNeq extends Instruction {
         parent::__construct($instruction, 3);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
         $arg3 = $this->getArg(3);
@@ -25,7 +26,7 @@ class JumpIfNeq extends Instruction {
                 $arg3 = $arg3->getVarAsConst();
             }
             if (!$arg2->isConst() || !$arg3->isConst()) {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
             if ($arg2->getType() == $arg3->getType() || $arg2->isNil() || $arg3->isNil()) {
                 if ($arg2->getValue() !== $arg3->getValue()) {
@@ -33,11 +34,12 @@ class JumpIfNeq extends Instruction {
                 }
             }
             else {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

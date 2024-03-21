@@ -4,6 +4,9 @@ namespace IPP\Student\Frame;
 
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\FrameAccessErrorException;
+use IPP\Student\Exception\InvalidSourceStructureException;
+use IPP\Student\Exception\VariableAccessErrorException;
 
 class FrameStack {
     static private Frame $GF;
@@ -36,7 +39,7 @@ class FrameStack {
     }
     static public function pushFrame(): void {
         if (!self::isTFInitialized()) {
-            exit(ReturnCode::FRAME_ACCESS_ERROR);
+            throw new FrameAccessErrorException();
         }
         self::incrementStackPointer();
         self::$LF[self::getStackPointer()] = self::$TF;
@@ -45,7 +48,7 @@ class FrameStack {
 
     static public function popFrame(): void {
         if (self::isLFEmpty()) {
-            exit(ReturnCode::FRAME_ACCESS_ERROR);
+            throw new FrameAccessErrorException();
         }
         self::$TF = self::$LF[self::getStackPointer()];
         unset(self::$LF[self::getStackPointer()]);
@@ -60,7 +63,7 @@ class FrameStack {
                 break;
             case 'LF':
                 if (self::isLFEmpty()) {
-                    exit(ReturnCode::FRAME_ACCESS_ERROR);
+                    throw new FrameAccessErrorException();
                 }
                 if (self::$LF[self::getStackPointer()]->isDefined($name)) {
                     $var = self::$LF[self::getStackPointer()]->getVar($name);
@@ -69,15 +72,15 @@ class FrameStack {
                 break;
             case 'TF':
                 if (!self::isTFInitialized()) {
-                    exit(ReturnCode::FRAME_ACCESS_ERROR);
+                    throw new FrameAccessErrorException();
                 }
                 $var = self::$TF->getVar($name);
                 break;
             default:
-                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                throw new InvalidSourceStructureException();
         }
         if ($var === null) {
-            exit(ReturnCode::VARIABLE_ACCESS_ERROR);
+            throw new VariableAccessErrorException();
         }
         return $var;
     }
@@ -96,16 +99,16 @@ class FrameStack {
                 return self::$GF;
             case 'LF':
                 if (self::isLFEmpty()) {
-                    exit(ReturnCode::FRAME_ACCESS_ERROR);
+                    throw new FrameAccessErrorException();
                 }
                 return self::$LF[self::getStackPointer()];
             case 'TF':
                 if (!self::isTFInitialized()) {
-                    exit(ReturnCode::FRAME_ACCESS_ERROR);
+                    throw new FrameAccessErrorException();
                 }
                 return self::$TF;
             default:
-                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                throw new InvalidSourceStructureException();
         }
     }
 }

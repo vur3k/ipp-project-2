@@ -5,6 +5,7 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Frame\FrameStack;
 
 class Type extends Instruction {
@@ -12,7 +13,7 @@ class Type extends Instruction {
         parent::__construct($instruction, 2);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
 
@@ -30,11 +31,12 @@ class Type extends Instruction {
                 $arg1->setValue(new Argument($arg2->getType(), 'string'));
             }
             else {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

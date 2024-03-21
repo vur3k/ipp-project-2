@@ -5,6 +5,7 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\DataStack;
+use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Factory;
 
 class Call extends Instruction {
@@ -12,14 +13,15 @@ class Call extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $val = $this->getArg(1);
 
         if (!$val->isLabel()) {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
         $label = InstructionList::getLabelLine($val->getValue());
         DataStack::pushData(new Argument($this->getOrder(), 'int'));
         Factory::setInstructionPointer($label);
+        return parent::execute();
     }
 }

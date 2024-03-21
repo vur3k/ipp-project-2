@@ -3,6 +3,8 @@
 namespace IPP\Student\Argument;
 
 use IPP\Core\ReturnCode;
+use IPP\Student\Exception\OperandTypeErrorException;
+use IPP\Student\Exception\ValueErrorException;
 use IPP\Student\Frame\FrameStack;
 
 class Variable extends Argument {
@@ -35,7 +37,7 @@ class Variable extends Argument {
             $var->assignVal($data);
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
     }
 
@@ -52,7 +54,7 @@ class Variable extends Argument {
             return $this->isBool() ? $this->data === 'true' : $this->data;
         }
         else {
-            exit(ReturnCode::VALUE_ERROR);
+            throw new ValueErrorException();
         }
     }
 
@@ -99,7 +101,7 @@ class Variable extends Argument {
             }
             return new Argument($var->getValue(), $var->getVarType());
         }
-        exit(ReturnCode::VALUE_ERROR);
+        throw new ValueErrorException();
     }
 
     private function assignVal(Argument $const): void {

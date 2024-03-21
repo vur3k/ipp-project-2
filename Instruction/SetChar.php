@@ -5,6 +5,9 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
+use IPP\Student\Exception\StringOperationErrorException;
+use IPP\Student\Exception\ValueErrorException;
 use IPP\Student\Frame\FrameStack;
 
 class SetChar extends Instruction {
@@ -12,7 +15,7 @@ class SetChar extends Instruction {
         parent::__construct($instruction, 3);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
         $arg3 = $this->getArg(3);
@@ -20,10 +23,10 @@ class SetChar extends Instruction {
         if ($arg1 instanceof Variable) {
             $arg1 = FrameStack::findInScope($arg1->getName(), $arg1->getFrame());
             if (!$arg1->isAssigned()) {
-                exit(ReturnCode::VALUE_ERROR);
+                throw new ValueErrorException();
             }
             if (!$arg1->isString()) {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
             $str = $arg1->getValue();
             if ($arg2 instanceof Variable) {
@@ -35,17 +38,18 @@ class SetChar extends Instruction {
             if ($arg2->isInt() && $arg3->isString()) {
                 $index = $arg2->getValue();
                 if ($index >= strlen($str) || $index < 0 || $arg3->getValue() === '') {
-                    exit(ReturnCode::STRING_OPERATION_ERROR);
+                    throw new StringOperationErrorException();
                 }
                 $str[$index] = $arg3->getValue()[0];
                 $arg1->setValue(new Argument($str, 'string'));
             }
             else {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

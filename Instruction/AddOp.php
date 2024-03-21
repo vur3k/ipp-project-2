@@ -5,13 +5,14 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
 
 class AddOp extends Instruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 3);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
         $arg3 = $this->getArg(3);
@@ -27,11 +28,12 @@ class AddOp extends Instruction {
                 $arg1->setValue(new Argument($arg2->getValue() + $arg3->getValue(), $arg2->getType()));
             }
             else {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

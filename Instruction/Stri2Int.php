@@ -5,13 +5,15 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
+use IPP\Student\Exception\StringOperationErrorException;
 
 class Stri2Int extends Instruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 3);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
         $arg3 = $this->getArg(3);
@@ -25,20 +27,21 @@ class Stri2Int extends Instruction {
             }
             if ($arg2->isString() && $arg3->isInt()) {
                 if ($arg3->getValue() >= strlen($arg2->getValue()) || $arg3->getValue() < 0) {
-                    exit(ReturnCode::STRING_OPERATION_ERROR);
+                    throw new StringOperationErrorException();
                 }
                 $ord = mb_ord($arg2->getValue()[$arg3->getValue()], 'UTF-8');
                 if (!$ord) {
-                    exit(ReturnCode::STRING_OPERATION_ERROR);
+                    throw new StringOperationErrorException();
                 }
                 $arg1->setValue(new Argument($ord, 'int'));
             }
             else {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

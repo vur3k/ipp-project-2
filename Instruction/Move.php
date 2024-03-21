@@ -4,13 +4,14 @@ namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
 
 class Move extends Instruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 2);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
 
@@ -19,12 +20,13 @@ class Move extends Instruction {
                 $arg2 = $arg2->getVarAsConst();
             }
             elseif (!$arg2->isConst()) {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
             $arg1->setValue($arg2);
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

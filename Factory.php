@@ -4,6 +4,8 @@ namespace IPP\Student;
 use IPP\Core\Interface\InputReader;
 use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
+use IPP\Student\Exception\InvalidSourceStructureException;
+use IPP\Student\Instruction\ExitOp;
 
 class Factory {
     static private int $instructionPointer;
@@ -15,14 +17,14 @@ class Factory {
 
         for ($i = 0; $i < $program->childElementCount; $i++) {
             if ($element->localName !== 'instruction') {
-                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                throw new InvalidSourceStructureException();
             }
             $order = (int)$element->getAttribute('order');
             if ($order < 1) {
-                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                throw new InvalidSourceStructureException();
             }
             if (isset($instructions[$order])) {
-                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                throw new InvalidSourceStructureException();
             }
             $instructions[$order] = $element;
             $element = $element->nextElementSibling;
@@ -193,7 +195,7 @@ class Factory {
                     $tmp = new Instruction\Int2Float($instruction);
                     break;
                 default:
-                    exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                    throw new InvalidSourceStructureException();
             }
             Instruction\InstructionList::insertInstructionToList($tmp);
         }
@@ -219,20 +221,25 @@ class Factory {
         return self::$instructionPointer;
     }
 
-    static public function executeInstructions(): void {
+    static public function executeInstructions(): int {
         $instructions = Instruction\InstructionList::getInstructionList();
         if (empty($instructions)) {
-            return;
+            return ReturnCode::OK;
         }
         self::setInstructionPointer(array_key_first($instructions));
         $lastLine = array_key_last($instructions);
         while (self::getInstructionPointer() <= $lastLine) {
-            $instructions[self::getInstructionPointer()]->execute();
+            $curr = $instructions[self::getInstructionPointer()];
+            if ($curr instanceof ExitOp) {
+                return $curr->execute();
+            }
+            $curr->execute();
             self::incrementInstructionPointer();
             self::incrementExecutedCount();
             while (!isset($instructions[self::getInstructionPointer()]) && self::getInstructionPointer() <= $lastLine) {
                 self::incrementInstructionPointer();
             }
         }
+        return ReturnCode::OK;
     }
 }

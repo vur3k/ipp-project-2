@@ -5,13 +5,16 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
+use IPP\Student\Exception\StringOperationErrorException;
+use IPP\Student\Exception\ValueErrorException;
 
 class Int2Char extends Instruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 2);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
 
@@ -22,16 +25,17 @@ class Int2Char extends Instruction {
             if ($arg2->isInt()) {
                 $char = mb_chr($arg2->getValue(), 'UTF-8');
                 if (!$char) {
-                    exit(ReturnCode::STRING_OPERATION_ERROR);
+                    throw new StringOperationErrorException();
                 }
                 $arg1->setValue(new Argument($char, 'string'));
             }
             else {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace IPP\Student\Argument;
 use IPP\Core\ReturnCode;
+use IPP\Student\Exception\InvalidSourceStructureException;
 
 class Argument {
     private string|int|float $value;
@@ -76,16 +77,16 @@ class Argument {
         $out = $split[0];
         for ($i = 1; $i < count($split); $i++) {
             if (strlen($split[$i]) < 3) {
-                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                throw new InvalidSourceStructureException();
             }
             for ($j = 0; $j < 3; $j++) {
                 if ('0' > $split[$i][$j] || $split[$i][$j] > '9') {
-                    exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                    throw new InvalidSourceStructureException();
                 }
             }
             $char = mb_chr((int)($split[$i][0] . $split[$i][1] . $split[$i][2]), 'UTF-8');
             if (!$char) {
-                exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                throw new InvalidSourceStructureException();
             }
             $out .= $char;
             $out .= substr($split[$i], 3);

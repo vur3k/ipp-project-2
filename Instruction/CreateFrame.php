@@ -9,7 +9,8 @@ class CreateFrame extends Instruction {
         parent::__construct($instruction, 0);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         FrameStack::createFrame();
+        return parent::execute();
     }
 }

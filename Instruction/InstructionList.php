@@ -3,6 +3,9 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
+use IPP\Student\Exception\InvalidSourceStructureException;
+use IPP\Student\Exception\OperandTypeErrorException;
+use IPP\Student\Exception\SemanticErrorException;
 
 class InstructionList {
     /** @var Instruction[] */
@@ -12,7 +15,7 @@ class InstructionList {
 
     static public function insertInstructionToList(Instruction $instruction): void {
         if (isset(self::$instructionList[$instruction->getOrder()])) {
-            exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+            throw new InvalidSourceStructureException();
         }
         if ($instruction instanceof Label) {
             self::insertLabelToList($instruction);
@@ -22,14 +25,14 @@ class InstructionList {
 
     static private function insertLabelToList(Instruction $instruction): void {
         if ($instruction->getArgCnt() !== 1) {
-            exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+            throw new InvalidSourceStructureException();
         }
         $label = $instruction->getArg(1);
         if (!$label->isLabel()) {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
         if (isset(self::$labelList[$label->getValue()])) {
-            exit(ReturnCode::SEMANTIC_ERROR);
+            throw new SemanticErrorException();
         }
         self::$labelList[$label->getValue()] = $instruction->getOrder();
     }
@@ -43,6 +46,6 @@ class InstructionList {
         if (isset(self::$labelList[$label])) {
             return self::$labelList[$label];
         }
-        exit(ReturnCode::SEMANTIC_ERROR);
+        throw new SemanticErrorException();
     }
 }

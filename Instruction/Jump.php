@@ -3,6 +3,7 @@
 namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
+use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Factory;
 
 class Jump extends Instruction {
@@ -10,12 +11,13 @@ class Jump extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $label = $this->getArg(1);
 
         if (!$label->isLabel()){
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
         Factory::setInstructionPointer(InstructionList::getLabelLine($label->getValue()));
+        return parent::execute();
     }
 }

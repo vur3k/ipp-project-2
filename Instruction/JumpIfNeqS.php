@@ -4,6 +4,7 @@ namespace IPP\Student\Instruction;
 
 use IPP\Core\ReturnCode;
 use IPP\Student\DataStack;
+use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Factory;
 
 class JumpIfNeqS extends Instruction {
@@ -11,7 +12,7 @@ class JumpIfNeqS extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $label = $this->getArg(1);
 
         if ($label->isLabel()) {
@@ -19,7 +20,7 @@ class JumpIfNeqS extends Instruction {
             $arg2 = DataStack::popData();
             $arg1 = DataStack::popData();
             if (!$arg1->isConst() || !$arg2->isConst()) {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
             if ($arg1->getType() == $arg2->getType() || $arg1->isNil() || $arg2->isNil()) {
                 if ($arg1->getValue() !== $arg2->getValue()) {
@@ -27,11 +28,12 @@ class JumpIfNeqS extends Instruction {
                 }
             }
             else {
-                exit(ReturnCode::OPERAND_TYPE_ERROR);
+                throw new OperandTypeErrorException();
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

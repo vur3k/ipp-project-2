@@ -9,7 +9,8 @@ class PushFrame extends Instruction {
         parent::__construct($instruction, 0);
     }
 
-    public function execute(): void {
+    public function execute(): int {
         FrameStack::pushFrame();
+        return parent::execute();
     }
 }

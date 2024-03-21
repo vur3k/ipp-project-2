@@ -4,6 +4,7 @@ namespace IPP\Student;
 
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
+use IPP\Student\Exception\ValueErrorException;
 
 class DataStack {
     /** @var Argument[] */
@@ -17,7 +18,7 @@ class DataStack {
 
     static public function popData(): Argument {
         if (self::isEmpty()) {
-            exit(ReturnCode::VALUE_ERROR);
+            throw new ValueErrorException();
         }
         $top = self::$stack[self::getStackPointer()];
         unset(self::$stack[self::getStackPointer()]);

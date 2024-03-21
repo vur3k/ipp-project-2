@@ -5,6 +5,7 @@ namespace IPP\Student\Instruction;
 use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
 
 class DPrint extends Instruction {
     static private OutputWriter $stderr;
@@ -13,7 +14,7 @@ class DPrint extends Instruction {
         self::$stderr = $stderr;
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg = $this->getArg(1);
 
         if ($arg instanceof Variable) {
@@ -37,7 +38,8 @@ class DPrint extends Instruction {
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

@@ -5,6 +5,8 @@ namespace IPP\Student\Instruction;
 use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\OperandTypeErrorException;
+use IPP\Student\Exception\ValueErrorException;
 use IPP\Student\Frame\FrameStack;
 
 class Write extends Instruction {
@@ -14,13 +16,13 @@ class Write extends Instruction {
         self::$stdout = $stdout;
     }
 
-    public function execute(): void {
+    public function execute(): int {
         $arg = $this->getArg(1);
         if ($arg instanceof Variable) {
 
             $var = FrameStack::findInScope($arg->getName(), $arg->getFrame());
             if (!$var->isAssigned()) {
-                exit(ReturnCode::VALUE_ERROR);
+                throw new ValueErrorException();
             }
             $arg = $arg->getVarAsConst();
         }
@@ -39,7 +41,8 @@ class Write extends Instruction {
             }
         }
         else {
-            exit(ReturnCode::OPERAND_TYPE_ERROR);
+            throw new OperandTypeErrorException();
         }
+        return parent::execute();
     }
 }

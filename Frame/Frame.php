@@ -4,14 +4,16 @@ namespace IPP\Student\Frame;
 
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\SemanticErrorException;
+use IPP\Student\Exception\VariableAccessErrorException;
 
 class Frame {
     /** @var Variable[] */
     private array $variables = [];
 
     public function defVar(Variable $var): void {
-        if ($this->isDefined($var->getName())){
-            exit(ReturnCode::SEMANTIC_ERROR);
+        if ($this->isDefined($var->getName())) {
+            throw new SemanticErrorException();
         }
         $this->variables[$var->getName()] = $var;
     }
@@ -24,6 +26,6 @@ class Frame {
         if ($this->isDefined($name)) {
             return $this->variables[$name];
         }
-        exit(ReturnCode::VARIABLE_ACCESS_ERROR);
+        throw new VariableAccessErrorException();
     }
 }

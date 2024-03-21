@@ -4,8 +4,9 @@ namespace IPP\Student\Instruction;
 use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
+use IPP\Student\Exception\InvalidSourceStructureException;
 
-class Instruction {
+abstract class Instruction {
     private int $order;
     private int $argCnt;
     /** @var Argument[] */
@@ -13,22 +14,24 @@ class Instruction {
 
     protected function __construct(\DOMElement $instruction, int $argCnt) {
         if ($instruction->nodeName !== 'instruction') {
-            exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+            throw new InvalidSourceStructureException();
         }
         $this->setOrder((int)$instruction->getAttribute('order'));
 
         if ($argCnt !== $instruction->childElementCount) {
-            exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+            throw new InvalidSourceStructureException();
         }
         $this->setArgCnt($argCnt);
         $this->storeArgs($instruction);
     }
 
-    public function execute(): void {}
+    public function execute(): int {
+        return ReturnCode::OK;
+    }
 
     private function setOrder(int $order): void {
         if ($order < 1) {
-            exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+            throw new InvalidSourceStructureException();
         }
         $this->order = $order;
     }
@@ -49,12 +52,12 @@ class Instruction {
         if ($this->getArgCnt() >= $n && isset($this->args[$n])) {
             return $this->args[$n];
         }
-        exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+        throw new InvalidSourceStructureException();
     }
 
     private function setArg(Argument $arg, int $n): void {
         if ($n > $this->getArgCnt() || isset($this->args[$n])) {
-            exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+            throw new InvalidSourceStructureException();
         }
         $this->args[$n] = $arg;
     }
@@ -87,7 +90,7 @@ class Instruction {
                     $this->setArg($arg,3);
                     break;
                 default:
-                    exit(ReturnCode::INVALID_SOURCE_STRUCTURE);
+                    throw new InvalidSourceStructureException();
             }
             $child = $child->nextElementSibling;
         }
