@@ -5,7 +5,6 @@ use IPP\Core\Interface\InputReader;
 use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
 use IPP\Student\Exception\InvalidSourceStructureException;
-use IPP\Student\Instruction\ExitOp;
 
 class Factory {
     static private int $instructionPointer;
@@ -230,7 +229,7 @@ class Factory {
         $lastLine = array_key_last($instructions);
         while (self::getInstructionPointer() <= $lastLine) {
             $curr = $instructions[self::getInstructionPointer()];
-            if ($curr instanceof ExitOp) {
+            if ($curr instanceof Instruction\ExitOp) {
                 return $curr->execute();
             }
             $curr->execute();

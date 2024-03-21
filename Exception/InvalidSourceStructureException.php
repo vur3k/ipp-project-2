@@ -5,9 +5,7 @@ namespace IPP\Student\Exception;
 use IPP\Core\Exception\IPPException;
 use IPP\Core\ReturnCode;
 
-/** 32 */
-class InvalidSourceStructureException extends IPPException
-{
+class InvalidSourceStructureException extends IPPException {
     public function __construct(?\Throwable $previous = null, bool $showTrace = true) {
         parent::__construct("Passed XML file has invalid structure", ReturnCode::INVALID_SOURCE_STRUCTURE, $previous, $showTrace);
     }
