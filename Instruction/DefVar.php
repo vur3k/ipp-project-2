@@ -2,7 +2,6 @@
 
 namespace IPP\Student\Instruction;
 
-use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\SemanticErrorException;

@@ -2,7 +2,6 @@
 
 namespace IPP\Student\Frame;
 
-use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\SemanticErrorException;
 use IPP\Student\Exception\VariableAccessErrorException;

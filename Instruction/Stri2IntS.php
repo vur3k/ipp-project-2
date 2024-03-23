@@ -2,12 +2,10 @@
 
 namespace IPP\Student\Instruction;
 
-use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\DataStack;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\StringOperationErrorException;
-use Spaze\PHPStan\Rules\Disallowed\Exceptions\NotImplementedYetException;
 
 class Stri2IntS extends Instruction {
     public function __construct(\DOMElement $instruction) {

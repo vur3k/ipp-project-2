@@ -3,7 +3,6 @@
 namespace IPP\Student;
 
 use IPP\Core\AbstractInterpreter;
-use IPP\Core\ReturnCode;
 use IPP\Student\Exception\InvalidSourceStructureException;
 use IPP\Student\Frame\FrameStack;
 

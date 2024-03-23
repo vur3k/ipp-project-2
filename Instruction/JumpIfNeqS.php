@@ -2,7 +2,6 @@
 
 namespace IPP\Student\Instruction;
 
-use IPP\Core\ReturnCode;
 use IPP\Student\DataStack;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Factory;

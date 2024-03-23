@@ -2,7 +2,6 @@
 
 namespace IPP\Student;
 
-use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Exception\ValueErrorException;
 
