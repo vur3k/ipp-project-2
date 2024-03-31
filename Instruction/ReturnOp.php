@@ -10,8 +10,7 @@ class ReturnOp extends Instruction {
         parent::__construct($instruction, 0);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         Factory::setInstructionPointer(DataStack::popData()->getValue());
-        return parent::execute();
     }
 }

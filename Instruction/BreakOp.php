@@ -14,7 +14,7 @@ class BreakOp extends Instruction {
         self::$stderr = $stderr;
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $currOrder = Factory::getInstructionPointer();
         self::$stderr->writeString("#########################################################################\n");
         self::$stderr->writeString("Instruction pointer: $currOrder\n\n");
@@ -35,6 +35,5 @@ class BreakOp extends Instruction {
         $executed = Factory::getExecutedCount();
         self::$stderr->writeString("$executed executed instructions\n");
         self::$stderr->writeString("#########################################################################\n");
-        return parent::execute();
     }
 }

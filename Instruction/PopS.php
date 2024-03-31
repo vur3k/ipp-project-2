@@ -11,12 +11,13 @@ class PopS extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $var = $this->getArg(1);
         if ($var instanceof Variable) {
             $var->setValue(DataStack::popData());
-            return parent::execute();
         }
-        throw new OperandTypeErrorException();
+        else {
+            throw new OperandTypeErrorException();
+        }
     }
 }

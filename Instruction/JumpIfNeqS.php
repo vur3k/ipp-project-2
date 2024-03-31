@@ -11,7 +11,7 @@ class JumpIfNeqS extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $label = $this->getArg(1);
 
         if ($label->isLabel()) {
@@ -33,6 +33,5 @@ class JumpIfNeqS extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }

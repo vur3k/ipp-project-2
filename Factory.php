@@ -34,163 +34,163 @@ class Factory {
         foreach ($instructions as $instruction) {
             $opcode = strtoupper($instruction->getAttribute('opcode'));
             switch ($opcode) {
-                case "MOVE":
+                case 'MOVE':
                     $tmp = new Instruction\Move($instruction);
                     break;
-                case "PUSHFRAME":
+                case 'PUSHFRAME':
                     $tmp = new Instruction\PushFrame($instruction);
                     break;
-                case "POPFRAME":
+                case 'POPFRAME':
                     $tmp = new Instruction\PopFrame($instruction);
                     break;
-                case "CREATEFRAME":
+                case 'CREATEFRAME':
                     $tmp = new Instruction\CreateFrame($instruction);
                     break;
-                case "DEFVAR":
+                case 'DEFVAR':
                     $tmp = new Instruction\DefVar($instruction);
                     break;
-                case "CALL":
+                case 'CALL':
                     $tmp = new Instruction\Call($instruction);
                     break;
-                case "RETURN":
+                case 'RETURN':
                     $tmp = new Instruction\ReturnOp($instruction);
                     break;
-                case "PUSHS":
+                case 'PUSHS':
                     $tmp = new Instruction\PushS($instruction);
                     break;
-                case "POPS":
+                case 'POPS':
                     $tmp = new Instruction\PopS($instruction);
                     break;
-                case "ADD":
+                case 'ADD':
                     $tmp = new Instruction\AddOp($instruction);
                     break;
-                case "SUB":
+                case 'SUB':
                     $tmp = new Instruction\SubOp($instruction);
                     break;
-                case "MUL":
+                case 'MUL':
                     $tmp = new Instruction\MulOp($instruction);
                     break;
-                case "IDIV":
+                case 'IDIV':
                     $tmp = new Instruction\IdivOp($instruction);
                     break;
-                case "LT":
+                case 'LT':
                     $tmp = new Instruction\LtOp($instruction);
                     break;
-                case "GT":
+                case 'GT':
                     $tmp = new Instruction\GtOp($instruction);
                     break;
-                case "EQ":
+                case 'EQ':
                     $tmp = new Instruction\EqOp($instruction);
                     break;
-                case "AND":
+                case 'AND':
                     $tmp = new Instruction\AndOp($instruction);
                     break;
-                case "OR":
+                case 'OR':
                     $tmp = new Instruction\OrOp($instruction);
                     break;
-                case "NOT":
+                case 'NOT':
                     $tmp = new Instruction\NotOp($instruction);
                     break;
-                case "INT2CHAR":
+                case 'INT2CHAR':
                     $tmp = new Instruction\Int2Char($instruction);
                     break;
-                case "STRI2INT":
+                case 'STRI2INT':
                     $tmp = new Instruction\Stri2Int($instruction);
                     break;
-                case "READ":
+                case 'READ':
                     $tmp = new Instruction\Read($instruction, $stdin);
                     break;
-                case "WRITE":
+                case 'WRITE':
                     $tmp = new Instruction\Write($instruction, $stdout);
                     break;
-                case "CONCAT":
+                case 'CONCAT':
                     $tmp = new Instruction\Concat($instruction);
                     break;
-                case "STRLEN":
+                case 'STRLEN':
                     $tmp = new Instruction\StrLenOp($instruction);
                     break;
-                case "GETCHAR":
+                case 'GETCHAR':
                     $tmp = new Instruction\GetChar($instruction);
                     break;
-                case "SETCHAR":
+                case 'SETCHAR':
                     $tmp = new Instruction\SetChar($instruction);
                     break;
-                case "TYPE":
+                case 'TYPE':
                     $tmp = new Instruction\Type($instruction);
                     break;
-                case "LABEL":
+                case 'LABEL':
                     $tmp = new Instruction\Label($instruction);
                     break;
-                case "JUMP":
+                case 'JUMP':
                     $tmp = new Instruction\Jump($instruction);
                     break;
-                case "JUMPIFEQ":
+                case 'JUMPIFEQ':
                     $tmp = new Instruction\JumpIfEq($instruction);
                     break;
-                case "JUMPIFNEQ":
+                case 'JUMPIFNEQ':
                     $tmp = new Instruction\JumpIfNeq($instruction);
                     break;
-                case "EXIT":
+                case 'EXIT':
                     $tmp = new Instruction\ExitOp($instruction);
                     break;
-                case "DPRINT":
+                case 'DPRINT':
                     $tmp = new Instruction\DPrint($instruction, $stderr);
                     break;
-                case "BREAK":
+                case 'BREAK':
                     $tmp = new Instruction\BreakOp($instruction, $stderr);
                     break;
-                case "ADDS":
+                case 'ADDS':
                     $tmp = new Instruction\AddS($instruction);
                     break;
-                case "ANDS":
+                case 'ANDS':
                     $tmp = new Instruction\AndS($instruction);
                     break;
-                case "CLEARS":
+                case 'CLEARS':
                     $tmp = new Instruction\ClearS($instruction);
                     break;
-                case "EQS":
+                case 'EQS':
                     $tmp = new Instruction\EqS($instruction);
                     break;
-                case "GTS":
+                case 'GTS':
                     $tmp = new Instruction\GtS($instruction);
                     break;
-                case "IDIVS":
+                case 'IDIVS':
                     $tmp = new Instruction\IdivS($instruction);
                     break;
-                case "INT2CHARS":
+                case 'INT2CHARS':
                     $tmp = new Instruction\Int2CharS($instruction);
                     break;
-                case "JUMPIFEQS":
+                case 'JUMPIFEQS':
                     $tmp = new Instruction\JumpIfEqS($instruction);
                     break;
-                case "JUMPIFNEQS":
+                case 'JUMPIFNEQS':
                     $tmp = new Instruction\JumpIfNeqS($instruction);
                     break;
-                case "LTS":
+                case 'LTS':
                     $tmp = new Instruction\LtS($instruction);
                     break;
-                case "MULS":
+                case 'MULS':
                     $tmp = new Instruction\MulS($instruction);
                     break;
-                case "NOTS":
+                case 'NOTS':
                     $tmp = new Instruction\NotS($instruction);
                     break;
-                case "ORS":
+                case 'ORS':
                     $tmp = new Instruction\OrS($instruction);
                     break;
-                case "STRI2INTS":
+                case 'STRI2INTS':
                     $tmp = new Instruction\Stri2IntS($instruction);
                     break;
-                case "SUBS":
+                case 'SUBS':
                     $tmp = new Instruction\SubS($instruction);
                     break;
-                case "DIV":
+                case 'DIV':
                     $tmp = new Instruction\DivOp($instruction);
                     break;
-                case "FLOAT2INT":
+                case 'FLOAT2INT':
                     $tmp = new Instruction\Float2Int($instruction);
                     break;
-                case "INT2FLOAT":
+                case 'INT2FLOAT':
                     $tmp = new Instruction\Int2Float($instruction);
                     break;
                 default:
@@ -229,10 +229,10 @@ class Factory {
         $lastLine = array_key_last($instructions);
         while (self::getInstructionPointer() <= $lastLine) {
             $curr = $instructions[self::getInstructionPointer()];
-            if ($curr instanceof Instruction\ExitOp) {
-                return $curr->execute();
-            }
             $curr->execute();
+            if ($curr instanceof Instruction\ExitOp) {
+                return $curr->getRetVal();
+            }
             self::incrementInstructionPointer();
             self::incrementExecutedCount();
             while (!isset($instructions[self::getInstructionPointer()]) && self::getInstructionPointer() <= $lastLine) {

@@ -13,7 +13,7 @@ class DPrint extends Instruction {
         self::$stderr = $stderr;
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $arg = $this->getArg(1);
 
         if ($arg instanceof Variable) {
@@ -39,6 +39,5 @@ class DPrint extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }

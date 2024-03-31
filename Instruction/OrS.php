@@ -11,7 +11,7 @@ class OrS extends Instruction {
         parent::__construct($instruction, 0);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $arg2 = DataStack::popData();
         $arg1 = DataStack::popData();
         if ($arg1->isBool() && $arg2->isBool()) {
@@ -20,6 +20,5 @@ class OrS extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }

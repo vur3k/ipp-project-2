@@ -12,7 +12,7 @@ class Call extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $val = $this->getArg(1);
 
         if (!$val->isLabel()) {
@@ -21,6 +21,5 @@ class Call extends Instruction {
         $label = InstructionList::getLabelLine($val->getValue());
         DataStack::pushData(new Argument($this->getOrder(), 'int'));
         Factory::setInstructionPointer($label);
-        return parent::execute();
     }
 }

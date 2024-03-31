@@ -12,7 +12,7 @@ class Int2CharS extends Instruction {
         parent::__construct($instruction, 0);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $arg = DataStack::popData();
 
         if ($arg->isInt()) {
@@ -25,6 +25,5 @@ class Int2CharS extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }

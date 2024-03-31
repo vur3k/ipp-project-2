@@ -10,12 +10,11 @@ class PushS extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $val = $this->getArg(1);
         if ($val instanceof Variable) {
             $val = $val->getVarAsConst();
         }
         DataStack::pushData($val);
-        return parent::execute();
     }
 }

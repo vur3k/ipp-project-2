@@ -14,7 +14,7 @@ class Read extends Instruction {
         self::$input = $stdin;
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
         if ($arg1 instanceof Variable) {
@@ -65,6 +65,5 @@ class Read extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }

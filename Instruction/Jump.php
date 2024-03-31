@@ -10,13 +10,12 @@ class Jump extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $label = $this->getArg(1);
 
         if (!$label->isLabel()){
             throw new OperandTypeErrorException();
         }
         Factory::setInstructionPointer(InstructionList::getLabelLine($label->getValue()));
-        return parent::execute();
     }
 }

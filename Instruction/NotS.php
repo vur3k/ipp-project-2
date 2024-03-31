@@ -11,7 +11,7 @@ class NotS extends Instruction {
         parent::__construct($instruction, 0);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $arg1 = DataStack::popData();
         if ($arg1->isBool()) {
             DataStack::pushData(new Argument(!$arg1->getValue() ? 'true' : 'false', 'bool'));
@@ -19,6 +19,5 @@ class NotS extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }

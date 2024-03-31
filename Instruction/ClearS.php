@@ -9,8 +9,7 @@ class ClearS extends Instruction {
         parent::__construct($instruction, 0);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         DataStack::clearData();
-        return parent::execute();
     }
 }

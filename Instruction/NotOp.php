@@ -11,7 +11,7 @@ class NotOp extends Instruction {
         parent::__construct($instruction, 2);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
 
@@ -29,6 +29,5 @@ class NotOp extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }

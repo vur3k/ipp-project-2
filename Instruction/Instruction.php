@@ -25,9 +25,7 @@ abstract class Instruction {
         $this->storeArgs($instruction);
     }
 
-    public function execute(): int {
-        return ReturnCode::OK;
-    }
+    abstract function execute(): void;
 
     private function setOrder(int $order): void {
         if ($order < 1) {

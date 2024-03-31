@@ -11,7 +11,7 @@ class AndOp extends Instruction {
         parent::__construct($instruction, 3);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $arg1 = $this->getArg(1);
         $arg2 = $this->getArg(2);
         $arg3 = $this->getArg(3);
@@ -33,6 +33,5 @@ class AndOp extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }

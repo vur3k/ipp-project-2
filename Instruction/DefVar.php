@@ -12,7 +12,7 @@ class DefVar extends Instruction {
         parent::__construct($instruction, 1);
     }
 
-    public function execute(): int {
+    public function execute(): void {
         $arg = $this->getArg(1);
 
         if ($arg instanceof Variable) {
@@ -27,6 +27,5 @@ class DefVar extends Instruction {
         else {
             throw new OperandTypeErrorException();
         }
-        return parent::execute();
     }
 }
