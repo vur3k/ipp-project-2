@@ -25,7 +25,7 @@ abstract class Instruction {
         $this->storeArgs($instruction);
     }
 
-    abstract function execute(): void;
+    abstract public function execute(): void;
 
     private function setOrder(int $order): void {
         if ($order < 1) {
@@ -85,7 +85,7 @@ abstract class Instruction {
                     $this->setArg($arg, 2);
                     break;
                 case 'arg3':
-                    $this->setArg($arg,3);
+                    $this->setArg($arg, 3);
                     break;
                 default:
                     throw new InvalidSourceStructureException();
