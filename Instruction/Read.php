@@ -5,7 +5,6 @@ namespace IPP\Student\Instruction;
 use IPP\Core\Interface\InputReader;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
-use IPP\Student\Exception\InvalidSourceStructureException;
 use IPP\Student\Exception\OperandTypeErrorException;
 
 class Read extends AbstractInstruction {
@@ -60,7 +59,7 @@ class Read extends AbstractInstruction {
                 }
             }
             else {
-                throw new InvalidSourceStructureException();
+                throw new OperandTypeErrorException();
             }
         }
         else {
