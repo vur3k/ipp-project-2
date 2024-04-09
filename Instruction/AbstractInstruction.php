@@ -1,12 +1,11 @@
 <?php
 namespace IPP\Student\Instruction;
 
-use IPP\Core\ReturnCode;
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\InvalidSourceStructureException;
 
-abstract class Instruction {
+abstract class AbstractInstruction {
     private int $order;
     private int $argCnt;
     /** @var Argument[] */

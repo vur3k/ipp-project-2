@@ -5,7 +5,7 @@ namespace IPP\Student\Instruction;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Factory;
 
-class Jump extends Instruction {
+class Jump extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 1);
     }

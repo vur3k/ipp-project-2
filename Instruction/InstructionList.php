@@ -7,12 +7,12 @@ use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\SemanticErrorException;
 
 class InstructionList {
-    /** @var Instruction[] */
+    /** @var AbstractInstruction[] */
     static private array $instructionList = [];
     /** @var int[] */
     static private array $labelList = [];
 
-    static public function insertInstructionToList(Instruction $instruction): void {
+    static public function insertInstructionToList(AbstractInstruction $instruction): void {
         if (isset(self::$instructionList[$instruction->getOrder()])) {
             throw new InvalidSourceStructureException();
         }
@@ -22,7 +22,7 @@ class InstructionList {
         self::$instructionList[$instruction->getOrder()] = $instruction;
     }
 
-    static private function insertLabelToList(Instruction $instruction): void {
+    static private function insertLabelToList(AbstractInstruction $instruction): void {
         if ($instruction->getArgCnt() !== 1) {
             throw new InvalidSourceStructureException();
         }
@@ -36,7 +36,7 @@ class InstructionList {
         self::$labelList[$label->getValue()] = $instruction->getOrder();
     }
 
-    /** @return Instruction[] */
+    /** @return AbstractInstruction[] */
     static public function getInstructionList(): array {
         return self::$instructionList;
     }

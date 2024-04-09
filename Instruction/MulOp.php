@@ -6,7 +6,7 @@ use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 
-class MulOp extends Instruction {
+class MulOp extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 3);
     }

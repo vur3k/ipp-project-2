@@ -5,7 +5,7 @@ namespace IPP\Student\Instruction;
 use IPP\Student\Argument\Variable;
 use IPP\Student\DataStack;
 
-class PushS extends Instruction {
+class PushS extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 1);
     }

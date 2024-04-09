@@ -9,7 +9,7 @@ use IPP\Student\Exception\StringOperationErrorException;
 use IPP\Student\Exception\ValueErrorException;
 use IPP\Student\Frame\FrameStack;
 
-class SetChar extends Instruction {
+class SetChar extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 3);
     }

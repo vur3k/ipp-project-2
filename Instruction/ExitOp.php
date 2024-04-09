@@ -7,7 +7,7 @@ use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\OperandValueErrorException;
 
-class ExitOp extends Instruction {
+class ExitOp extends AbstractInstruction {
     private int $retVal;
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 1);

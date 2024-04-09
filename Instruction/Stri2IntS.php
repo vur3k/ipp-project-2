@@ -7,7 +7,7 @@ use IPP\Student\DataStack;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\StringOperationErrorException;
 
-class Stri2IntS extends Instruction {
+class Stri2IntS extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 0);
     }

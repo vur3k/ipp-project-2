@@ -7,7 +7,7 @@ use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 
-class Read extends Instruction {
+class Read extends AbstractInstruction {
     static private InputReader $input;
     public function __construct(\DOMElement $instruction, InputReader $stdin) {
         parent::__construct($instruction, 2);

@@ -6,7 +6,7 @@ use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 
-class Float2Int extends Instruction {
+class Float2Int extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 2);
     }

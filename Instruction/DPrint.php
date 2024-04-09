@@ -6,7 +6,7 @@ use IPP\Core\Interface\OutputWriter;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 
-class DPrint extends Instruction {
+class DPrint extends AbstractInstruction {
     static private OutputWriter $stderr;
     public function __construct(\DOMElement $instruction, OutputWriter $stderr) {
         parent::__construct($instruction, 1);

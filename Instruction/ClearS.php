@@ -4,7 +4,7 @@ namespace IPP\Student\Instruction;
 
 use IPP\Student\DataStack;
 
-class ClearS extends Instruction {
+class ClearS extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 0);
     }

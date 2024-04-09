@@ -7,7 +7,7 @@ use IPP\Student\Factory;
 use IPP\Student\Frame\FrameStack;
 use IPP\Core\Interface\OutputWriter;
 
-class BreakOp extends Instruction {
+class BreakOp extends AbstractInstruction {
     static private OutputWriter $stderr;
     public function __construct(\DOMElement $instruction, OutputWriter $stderr) {
         parent::__construct($instruction, 0);

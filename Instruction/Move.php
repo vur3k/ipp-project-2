@@ -5,7 +5,7 @@ namespace IPP\Student\Instruction;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 
-class Move extends Instruction {
+class Move extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 2);
     }

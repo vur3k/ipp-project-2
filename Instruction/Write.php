@@ -8,7 +8,7 @@ use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\ValueErrorException;
 use IPP\Student\Frame\FrameStack;
 
-class Write extends Instruction {
+class Write extends AbstractInstruction {
     static private OutputWriter $stdout;
     public function __construct(\DOMElement $instruction, OutputWriter $stdout) {
         parent::__construct($instruction, 1);

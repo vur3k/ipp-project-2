@@ -7,7 +7,7 @@ use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\OperandValueErrorException;
 
-class IdivOp extends Instruction {
+class IdivOp extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 3);
     }

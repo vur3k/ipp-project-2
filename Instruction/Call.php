@@ -7,7 +7,7 @@ use IPP\Student\DataStack;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Factory;
 
-class Call extends Instruction {
+class Call extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 1);
     }

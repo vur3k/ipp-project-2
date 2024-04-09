@@ -4,7 +4,7 @@ namespace IPP\Student\Instruction;
 
 use IPP\Student\Frame\FrameStack;
 
-class PushFrame extends Instruction {
+class PushFrame extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 0);
     }

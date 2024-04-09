@@ -6,7 +6,7 @@ use IPP\Student\Argument\Argument;
 use IPP\Student\DataStack;
 use IPP\Student\Exception\OperandTypeErrorException;
 
-class SubS extends Instruction
+class SubS extends AbstractInstruction
 {
     public function __construct(\DOMElement $instruction)
     {

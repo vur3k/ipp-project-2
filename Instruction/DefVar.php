@@ -7,7 +7,7 @@ use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\SemanticErrorException;
 use IPP\Student\Frame\FrameStack;
 
-class DefVar extends Instruction {
+class DefVar extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 1);
     }
