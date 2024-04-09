@@ -18,7 +18,11 @@ class Factory {
             if ($element->localName !== 'instruction') {
                 throw new InvalidSourceStructureException();
             }
-            $order = (int)$element->getAttribute('order');
+            $order = $element->getAttribute('order');
+            if ($order === "") {
+                throw new InvalidSourceStructureException();
+            }
+            $order = (int)$order;
             if ($order < 1) {
                 throw new InvalidSourceStructureException();
             }

@@ -2,6 +2,7 @@
 
 namespace IPP\Student\Argument;
 
+use IPP\Student\Exception\InvalidSourceStructureException;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\ValueErrorException;
 use IPP\Student\Frame\FrameStack;

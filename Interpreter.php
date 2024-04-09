@@ -3,12 +3,19 @@
 namespace IPP\Student;
 
 use IPP\Core\AbstractInterpreter;
+use IPP\Core\Exception\XMLException;
 use IPP\Student\Exception\InvalidSourceStructureException;
 use IPP\Student\Frame\FrameStack;
 
 class Interpreter extends AbstractInterpreter {
     public function execute(): int {
-        $dom = $this->source->getDOMDocument();
+        try {
+            $dom = $this->source->getDOMDocument();
+        }
+        catch (\ValueError) {
+            throw new XMLException();
+        }
+
         if ($dom->firstChild !== $dom->lastChild) {
             throw new InvalidSourceStructureException();
         }

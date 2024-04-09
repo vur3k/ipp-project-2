@@ -15,7 +15,11 @@ abstract class AbstractInstruction {
         if ($instruction->nodeName !== 'instruction') {
             throw new InvalidSourceStructureException();
         }
-        $this->setOrder((int)$instruction->getAttribute('order'));
+        $order = $instruction->getAttribute('order');
+        if ($order === "") {
+            throw new InvalidSourceStructureException();
+        }
+        $this->setOrder((int)$order);
 
         if ($argCnt !== $instruction->childElementCount) {
             throw new InvalidSourceStructureException();
@@ -63,12 +67,21 @@ abstract class AbstractInstruction {
         $child = $instruction->firstElementChild;
         for ($i = 0; $i < $this->getArgCnt(); $i++) {
             $tag = trim($child->nodeValue);
-            $split = explode('@', $tag, 2);
-            if ($split[0] === 'GF' || $split[0] === 'LF' || $split[0] === 'TF') {
-                $arg = new Variable($tag);
+            $type = $child->getAttribute('type');
+            if ($type === "") {
+                throw new InvalidSourceStructureException();
+            }
+            elseif ($type === 'var') {
+                $split = explode('@', $tag, 2);
+                if ($split[0] === 'GF' || $split[0] === 'LF' || $split[0] === 'TF') {
+                    $arg = new Variable($tag);
+                }
+                else {
+                    throw new InvalidSourceStructureException();
+                }
             }
             else {
-                $type = $child->getAttribute('type');
+
                 if ($type === 'string') {
                     $arg = new Argument(Argument::expandString($tag), 'string');
                 }
