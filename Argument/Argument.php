@@ -1,9 +1,19 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Argument
+ * @file student/Argument/Argument.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Argument;
 
 use IPP\Student\Exception\InvalidSourceStructureException;
 
+/**
+ * Class representing an argument in the IPPCode24 language
+ */
 class Argument {
     private string|int|float $value;
     private string $type;

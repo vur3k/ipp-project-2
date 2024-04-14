@@ -1,11 +1,21 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Instruction
+ * @file student/Instruction/Int2Float.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Instruction;
 
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 
+/**
+ * Class representing the INT2FLOAT instruction
+ */
 class Int2Float extends AbstractInstruction {
     public function __construct(\DOMElement $instruction) {
         parent::__construct($instruction, 2);

@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Instruction
+ * @file student/Instruction/DivOp.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Instruction;
 
 use IPP\Student\Argument\Argument;
@@ -7,6 +14,9 @@ use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\OperandValueErrorException;
 
+/**
+ * Class representing the DIV instruction
+ */
 class DivOp extends AbstractInstruction {
     public function __construct(\DOMElement $instruction){
         parent::__construct($instruction, 3);

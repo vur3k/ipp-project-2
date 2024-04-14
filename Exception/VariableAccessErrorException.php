@@ -1,12 +1,22 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Exception
+ * @file student/Exception/VariableAccessErrorException.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Exception;
 
 use IPP\Core\Exception\IPPException;
 use IPP\Core\ReturnCode;
 
+/**
+ * Exception thrown when a nonexistent variable is accessed
+ */
 class VariableAccessErrorException extends IPPException {
     public function __construct(?\Throwable $previous = null, bool $showTrace = true) {
-        parent::__construct("Tried to access nonexistent variable", ReturnCode::VARIABLE_ACCESS_ERROR, $previous, $showTrace);
+        parent::__construct("Tried to access a nonexistent variable", ReturnCode::VARIABLE_ACCESS_ERROR, $previous, $showTrace);
     }
 }

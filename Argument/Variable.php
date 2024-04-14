@@ -1,11 +1,21 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student
+ * @file student/Interpreter.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Argument;
 
 use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\ValueErrorException;
 use IPP\Student\Frame\FrameStack;
 
+/**
+ * Class representing a variable in the IPPCode24 language
+ */
 class Variable extends Argument {
     private string|int|float|null $data;
     private ?string $dataType;

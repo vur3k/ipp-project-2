@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Instruction
+ * @file student/Instruction/Read.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Instruction;
 
 use IPP\Core\Interface\InputReader;
@@ -7,6 +14,9 @@ use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\OperandTypeErrorException;
 
+/**
+ * Class representing the READ instruction
+ */
 class Read extends AbstractInstruction {
     static private InputReader $input;
     public function __construct(\DOMElement $instruction, InputReader $stdin) {

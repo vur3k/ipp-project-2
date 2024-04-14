@@ -1,10 +1,21 @@
 <?php
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Instruction
+ * @file student/Instruction/AbstractInstruction.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Instruction;
 
 use IPP\Student\Argument\Argument;
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\InvalidSourceStructureException;
 
+/**
+ * Base abstract class representing an instruction in the IPPCode24 language
+ */
 abstract class AbstractInstruction {
     private int $order;
     private int $argCnt;

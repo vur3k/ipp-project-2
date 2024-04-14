@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Instruction
+ * @file student/Instruction/BreakOp.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Instruction;
 
 use IPP\Student\DataStack;
@@ -7,6 +14,9 @@ use IPP\Student\Factory;
 use IPP\Student\Frame\FrameStack;
 use IPP\Core\Interface\OutputWriter;
 
+/**
+ * Class representing the BREAK instruction
+ */
 class BreakOp extends AbstractInstruction {
     static private OutputWriter $stderr;
     public function __construct(\DOMElement $instruction, OutputWriter $stderr) {

@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Instruction
+ * @file student/Instruction/Write.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Instruction;
 
 use IPP\Core\Interface\OutputWriter;
@@ -8,6 +15,9 @@ use IPP\Student\Exception\OperandTypeErrorException;
 use IPP\Student\Exception\ValueErrorException;
 use IPP\Student\Frame\FrameStack;
 
+/**
+ * Class representing the WRITE instruction
+ */
 class Write extends AbstractInstruction {
     static private OutputWriter $stdout;
     public function __construct(\DOMElement $instruction, OutputWriter $stdout) {

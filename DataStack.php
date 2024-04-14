@@ -1,10 +1,20 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student
+ * @file student/DataStack.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student;
 
 use IPP\Student\Argument\Argument;
 use IPP\Student\Exception\ValueErrorException;
 
+/**
+ * Class representing static data stack
+ */
 class DataStack {
     /** @var Argument[] */
     static private array $stack;

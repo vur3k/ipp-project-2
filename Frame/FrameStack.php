@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Frame
+ * @file student/Frame/FrameStack.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Frame;
 
 use IPP\Student\Argument\Variable;
@@ -7,6 +14,9 @@ use IPP\Student\Exception\FrameAccessErrorException;
 use IPP\Student\Exception\InvalidSourceStructureException;
 use IPP\Student\Exception\VariableAccessErrorException;
 
+/**
+ * Class implementing a static frame stack of the IPPCode24 language frames
+ */
 class FrameStack {
     static private Frame $GF;
     /** @var Frame[] */

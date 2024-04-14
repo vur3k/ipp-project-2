@@ -1,11 +1,21 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student\Frame
+ * @file student/Frame/Frame.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student\Frame;
 
 use IPP\Student\Argument\Variable;
 use IPP\Student\Exception\SemanticErrorException;
 use IPP\Student\Exception\VariableAccessErrorException;
 
+/**
+ * Class representing a data frame in the IPPCode24 language
+ */
 class Frame {
     /** @var Variable[] */
     private array $variables = [];

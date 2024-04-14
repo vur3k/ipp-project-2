@@ -1,11 +1,21 @@
 <?php
-
+/**
+ * IPP Project II.
+ * @brief IPPCode24 language interpreter
+ * @package IPP\Student
+ * @file student/Factory.php
+ * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
+ * @date 14-04-2024
+ */
 namespace IPP\Student;
 use IPP\Core\Interface\InputReader;
 use IPP\Core\Interface\OutputWriter;
 use IPP\Core\ReturnCode;
 use IPP\Student\Exception\InvalidSourceStructureException;
 
+/**
+ * Class representing the static factory for parsing and executing instructions
+ */
 class Factory {
     static private int $instructionPointer;
     static private int $instructionExecutedCount = 0;
