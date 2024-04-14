@@ -3,7 +3,7 @@
  * IPP Project II.
  * @brief IPPCode24 language interpreter
  * @package IPP\Student\Instruction
- * @file student/Instruction/Int2Float.php
+ * @file Int2Float.php
  * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
  * @date 14-04-2024
  */

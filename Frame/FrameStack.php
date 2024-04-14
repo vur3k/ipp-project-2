@@ -3,7 +3,7 @@
  * IPP Project II.
  * @brief IPPCode24 language interpreter
  * @package IPP\Student\Frame
- * @file student/Frame/FrameStack.php
+ * @file FrameStack.php
  * @author Vaclav Pribyl <xpriby22@stud.fit.vutbr.cz>
  * @date 14-04-2024
  */
